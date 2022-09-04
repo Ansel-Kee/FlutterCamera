@@ -34,9 +34,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    defaultConfig {                                                                             │
-│     minSdkVersion 21                                                                          │
-│   }  
+      
 
     kotlinOptions {
         jvmTarget = '1.8'
@@ -51,7 +49,7 @@ android {
         applicationId "com.example.pirateshipcamera"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

@@ -48,12 +48,16 @@ class _MediaGridState extends State<MediaGrid> {
 
   _fetchNewMedia() async {
     lastPage = currentPage;
+    List<AssetEntity> media = [];
     var result = await PhotoManager.requestPermissionExtend();
     if (result.isAuth) {
       List<AssetPathEntity> albums =
           await PhotoManager.getAssetPathList(onlyAll: true);
-      List<AssetEntity> media =
-          await albums[0].getAssetListPaged(page: currentPage, size: 60);
+      try {
+        media = await albums[0].getAssetListPaged(page: currentPage, size: 60);
+      } catch (e) {
+        print(e);
+      }
       setState(() {
         mediaList.addAll(media);
         currentPage++;

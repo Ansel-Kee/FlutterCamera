@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 
 // A screen that allows users to take a picture using a given camera.
 class Camera extends StatefulWidget {
-  const Camera({
-    super.key,
-  });
-
+  Camera({super.key, required this.firstCamera});
+  CameraDescription firstCamera;
   @override
   CameraState createState() => CameraState();
 }
@@ -19,20 +17,14 @@ class CameraState extends State<Camera> {
   late Future<void> _initializeControllerFuture;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
 
-    // Obtain a list of the available cameras on the device.
-    final cameras = await availableCameras();
-
-    // Get a specific camera from the list of available cameras.
-    final firstCamera = cameras.first;
     // To display the current output from the Camera,
     // create a CameraController.
     _controller = CameraController(
       // Get a specific camera from the list of available cameras.
-      firstCamera,
+      widget.firstCamera,
       // Define the resolution to use.
       ResolutionPreset.medium,
     );
