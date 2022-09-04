@@ -29,7 +29,8 @@ class _BodyState extends State<Body> {
     return Scaffold(
         body: Center(
             child: Container(
-                child: Row(children: [
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       TextButton(
           onPressed: () => Navigator.push(
                 context,
