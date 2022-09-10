@@ -147,6 +147,7 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
                 if (file != null) {
                   print(file.path);
                   videoFile = file;
+                  _recording = false;
                   _startVideoPlayer(videoFile);
                 }
               });
@@ -154,7 +155,11 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
             }
           }
         },
-        child: _image ? Icon(Icons.camera_alt) : Icon(Icons.play_circle_fill),
+        child: _image
+            ? Icon(Icons.camera_alt)
+            : _recording
+                ? Icon(Icons.stop_circle)
+                : Icon(Icons.play_circle_fill),
       ),
     );
   }
