@@ -63,7 +63,7 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
         title: const Text('Take a picture'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
+          tabs: const [
             Tab(text: 'Picture'),
             Tab(text: 'Video'),
           ],
@@ -78,7 +78,7 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
                 onPanUpdate: (DragUpdateDetails details) {
                   if (details.delta.dx > 0) {
                     // right swipe
-                    if (_tabIndex == 0) {
+                    if (_tabIndex == 1) {
                       setState(() {
                         _tabIndex = 1;
                         _tabController.animateTo(_tabIndex);
@@ -87,7 +87,7 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
                     }
                   } else if (details.delta.dx < 0) {
                     // left swipe
-                    if (_tabIndex == 1) {
+                    if (_tabIndex == 0) {
                       setState(() {
                         _tabIndex = 0;
                         _tabController.animateTo(_tabIndex);
@@ -156,10 +156,10 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
           }
         },
         child: _image
-            ? Icon(Icons.camera_alt)
+            ? const Icon(Icons.camera_alt)
             : _recording
-                ? Icon(Icons.stop_circle)
-                : Icon(Icons.play_circle_fill),
+                ? const Icon(Icons.stop_circle)
+                : const Icon(Icons.play_circle_fill),
       ),
     );
   }
