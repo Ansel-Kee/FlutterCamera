@@ -37,6 +37,16 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
     _tabController = TabController(vsync: this, length: 2);
+
+    _tabController.addListener(() {
+      setState(() {
+        if (_tabController.index == 0) {
+          _image = true;
+        } else {
+          _image = false;
+        }
+      });
+    });
   }
 
   @override
@@ -95,6 +105,7 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
         // Provide an onPressed callback.
         onPressed: () async {
           if (_image) {
+            // image tab
             try {
               await _initializeControllerFuture;
 
@@ -119,13 +130,15 @@ class CameraState extends State<Camera> with SingleTickerProviderStateMixin {
               print(e);
             }
           } else {
+            // video tab
             if (!_recording) {
               _controller.startVideoRecording().then((_) {
                 if (mounted) {
-                  setState(() {});
+                  setState(() {
+                    _recording = true;
+                  });
                 }
               });
-              ;
             } else {
               _controller.stopVideoRecording().then((XFile? file) {
                 if (mounted) {
