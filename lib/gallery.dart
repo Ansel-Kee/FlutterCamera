@@ -2,9 +2,7 @@ import 'dart:typed_data';
 
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:pirateshipcamera/gallery.dart';
 
 class Gallery extends StatefulWidget {
   const Gallery({Key? key}) : super(key: key);
@@ -50,6 +48,7 @@ class _MediaGridState extends State<MediaGrid> {
     lastPage = currentPage;
     List<AssetEntity> media = [];
     var result = await PhotoManager.requestPermissionExtend();
+
     if (result.isAuth) {
       List<AssetPathEntity> albums =
           await PhotoManager.getAssetPathList(onlyAll: true);
