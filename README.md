@@ -1,4 +1,4 @@
-# pirateshipcamera
+# FlutterCamera
 
 A new Flutter project.
 
